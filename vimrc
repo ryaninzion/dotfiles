@@ -10,7 +10,11 @@ set wildmode=list:longest
 
 set foldenable
 
-set guifont=Consolas:h11
+if has('win32')
+	set guifont=Consolas:h12
+elseif has('unix') 
+	set guifont=Ubuntu\ Mono\ 11
+endif
 
 if has('gui_running')
 	colorscheme solarized
@@ -19,7 +23,10 @@ else
 endif
 
 "Check current buffer file in Chrome
-abbrev chrome :!start "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "file://%:p"<cr>
+if has('win32')
+	abbrev chrome :!start "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" "file://%:p"<cr>
+endif
+
 
 "Shortcut to .vimrc
 nmap ,ev :tabedit $MYVIMRC<cr>
